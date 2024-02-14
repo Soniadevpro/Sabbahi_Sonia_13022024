@@ -6,6 +6,7 @@ import Login from "./Views/Login";
 
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
+import UserAccount from "./Views/UserAccount";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<Login />} />
+        <Route path="/user-account" element={<UserAccount />} />
       </Routes>
       <Footer />
     </BrowserRouter>
