@@ -10,6 +10,8 @@ import { store } from "./Redux/store.js";
 const root = createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
+    {" "}
     <App />
   </Provider>
 );
+// Provider rend le store Redux disponible à tous les composants de l'application
