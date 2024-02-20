@@ -9,7 +9,7 @@ const userSlice = createSlice({
   initialState: {
     name: "",
     firstname: "",
-    username: "toto",
+    username: "",
     token: "",
   },
   // Reducers : setUser est un reducer pour mettre à jour l'état de l'utilisateur. Il prend action.payload et met à jour l'état en conséquence.

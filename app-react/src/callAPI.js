@@ -4,12 +4,15 @@ import { setUser } from "./Redux/features/userSlice";
 
 export const loginUser = async (email, password) => {
   try {
-    const response = await axios.post("URL_API/login", { email, password });
+    const response = await axios.post("URL_API/sign-in", { email, password });
     const { token, name, firstname, username } = response.data;
     store.dispatch(setUser({ token, name, firstname, username }));
+
+    alert("Connexion reussie !");
     // Redirection
   } catch (error) {
     console.error(error);
+    alert("Erreur de connexion !");
   }
 };
 
