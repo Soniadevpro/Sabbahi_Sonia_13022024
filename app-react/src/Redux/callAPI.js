@@ -1,17 +1,17 @@
 import axios from "axios";
 
 import { store } from "./store"; // Ajouter l'importation du store
-import { setUser } from "./features/userSlice"; // Ajouter l'importation de setUp
-import { useNavigate } from "react-router-dom";
+import { setUser, setToken } from "./features/userSlice"; // Ajouter l'importation de setUp
+
+// import { useNavigate } from "react-router-dom";
 // const navigate = useNavigate();
 
 export const loginUser = async (email, password, navigate) => {
   try {
     const response = await axios.post("http://localhost:3001/api/v1/user/login", { email, password });
-    const { token, name, firstname, username } = response.data;
 
-    store.dispatch(setUser({ token, name, firstname, username }));
-
+    console.log(response.data.body);
+    store.dispatch(setToken(response.data.body));
     // Afficher une alerte de succès
     alert("Connexion réussie !");
     navigate("/user-account");

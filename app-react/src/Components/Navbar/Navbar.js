@@ -1,43 +1,52 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../Redux/features/userSlice"; // Assurez-vous que le chemin est correct
+import { logout } from "../../Redux/features/userSlice"; // Importation de l'action logout
 import "../Navbar/Navbar.css";
-import Logo from "../../assets/argentBankLogo.png";
+import Logo from "../../assets/argentBankLogo.png"; // Importation du logo
 
+// Composant Navbar : Barre de navigation pour l'application
 const Navbar = () => {
+  // Accès à l'état de l'utilisateur depuis le store Redux
   const user = useSelector((state) => state.user);
+  // Utilisation de useDispatch pour envoyer des actions à Redux
   const dispatch = useDispatch();
-  console.log("User state in Navbar:", user); // Pour le débogage
+
+  // console.log pour le débogage, affiche l'état actuel de l'utilisateur
+  console.log("User state in Navbar:", user);
+
+  // Fonction pour gérer la déconnexion
   const handleLogout = () => {
-    console.log("Logging out..."); // Pour le débogage
-    dispatch(logout());
-    // Rediriger vers la page de connexion si nécessaire
-    // navigate("/login");
+    console.log("Logging out..."); // Log pour le débogage
+    dispatch(logout()); // Envoie l'action logout pour réinitialiser l'état de l'utilisateur
+    //
   };
 
   return (
     <nav className="main-nav">
+      {/* Lien vers la page d'accueil avec le logo */}
       <Link to="/" className="main-nav-logo">
         <img className="main-nav-logo-image" src={Logo} alt="Argent Bank Logo" />
-        <h1 className="sr-only">Argent Bank</h1>
+        <h1 className="sr-only">Argent Bank</h1> {/* Utilisé pour l'accessibilité */}
       </Link>
       <div>
+        {/* Affichage conditionnel basé sur l'état de connexion de l'utilisateur */}
         {user.token ? (
-          // Affichage lorsque l'utilisateur est connecté
+          // Affichage pour l'utilisateur connecté
           <>
             <span className="main-nav-item">
-              <i className="fa fa-user-circle"></i>
-              {user.username}
+              <i className="fa fa-user-circle"></i> {/* Icône de l'utilisateur */}
+              {user.username} {/* Nom d'utilisateur affiché */}
             </span>
-            <button onClick={handleLogout} className="main-nav-item logout-button">
+            {/* Bouton de déconnexion */}
+            <Link onClick={handleLogout} className="main-nav-item logout-button">
               Sign Out
-            </button>
+            </Link>
           </>
         ) : (
-          // Affichage lorsque l'utilisateur n'est pas connecté
+          // Affichage pour l'utilisateur non connecté
           <Link to="/login" className="main-nav-item">
-            <i className="fa fa-user-circle"></i>
+            <i className="fa fa-user-circle"></i> {/* Icône de connexion */}
             Sign In
           </Link>
         )}
