@@ -1,6 +1,5 @@
 // Logique de gestion de l'état de l'utilisateur
 
-import React from "react";
 import { createSlice } from "@reduxjs/toolkit";
 // Création du slice : Utilisation de createSlice pour créer un slice nommé "user" avec un état initial contenant name, firstname, username et token.
 
@@ -21,8 +20,14 @@ const userSlice = createSlice({
       state.username = username;
       state.token = token;
     },
+    logout: (state) => {
+      state.name = "";
+      state.firstname = "";
+      state.username = "";
+      state.token = "";
+    },
   },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setUser, logout } = userSlice.actions;
 export default userSlice.reducer;

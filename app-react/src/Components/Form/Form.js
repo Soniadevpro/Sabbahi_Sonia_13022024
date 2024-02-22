@@ -1,18 +1,18 @@
 import "../Form/Form.css";
 import React, { useState } from "react";
-
-import { loginUser } from "../../callAPI";
+import { loginUser } from "../../Redux/callAPI"; // Modifier pour importer loginUser
 import { useNavigate } from "react-router-dom";
 
 const Form = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // const loginUser = useLogin(); // Utilisez le hook pour obtenir la fonction loginUser
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await loginUser(email, password);
-    navigate("/user-account");
+    await loginUser(email, password, navigate);
+    // La redirection est maintenant gérée dans useLoginUser
   };
 
   return (
