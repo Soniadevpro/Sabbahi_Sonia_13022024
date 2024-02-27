@@ -31,8 +31,10 @@ const userSlice = createSlice({
       const { token } = action.payload;
       state.token = token;
     },
+
+    setSignup: (state, action) => {},
   },
 });
 
-export const { setUser, logout, setToken } = userSlice.actions;
+export const { setUser, logout, setToken, setSignup } = userSlice.actions;
 export default userSlice.reducer;

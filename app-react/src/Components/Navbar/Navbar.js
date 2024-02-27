@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../Redux/features/userSlice"; // Importation de l'action logout
 import "../Navbar/Navbar.css";
@@ -11,14 +11,16 @@ const Navbar = () => {
   const user = useSelector((state) => state.user);
   // Utilisation de useDispatch pour envoyer des actions à Redux
   const dispatch = useDispatch();
-
+  const navigate = useNavigate(); // Création de l'instance navigate
   // console.log pour le débogage, affiche l'état actuel de l'utilisateur
   console.log("User state in Navbar:", user);
 
   // Fonction pour gérer la déconnexion
   const handleLogout = () => {
     console.log("Logging out..."); // Log pour le débogage
-    dispatch(logout()); // Envoie l'action logout pour réinitialiser l'état de l'utilisateur
+    dispatch(logout());
+    navigate("/login"); // Envoie l'action logout pour réinitialiser l'état de l'utilisateur
+
     //
   };
 
@@ -38,8 +40,9 @@ const Navbar = () => {
               <i className="fa fa-user-circle"></i> {/* Icône de l'utilisateur */}
               {user.username} {/* Nom d'utilisateur affiché */}
             </span>
+
             {/* Bouton de déconnexion */}
-            <Link onClick={handleLogout} className="main-nav-item logout-button">
+            <Link to="/login" onClick={handleLogout} className="main-nav-item logout-button">
               Sign Out
             </Link>
           </>
