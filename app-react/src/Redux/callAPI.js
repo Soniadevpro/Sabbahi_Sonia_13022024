@@ -11,7 +11,7 @@ export const loginUser = async (email, password, navigate) => {
     const response = await axios.post("http://localhost:3001/api/v1/user/login", { email, password });
 
     console.log(response.data.body);
-    store.dispatch(setToken(response.data.body));
+    store.dispatch(setToken, setUser(response.data.body));
 
     // Afficher une alerte de succès
     alert("Connexion réussie !");
